@@ -36,6 +36,7 @@ app.get("*", (req, res) => {
   res.send("sorry, nothing here((");
 });
 
-app.listen(process.env.PORT || 3000, function() {
+const port = process.env.PORT || 3000;
+app.listen(port, function() {
   console.log("server starts");
 });
