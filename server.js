@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt-nodejs");
 const cors = require("cors");
 const knex = require("knex");
-const formData = require("express-form-data");
 
 const register = require("./controllers/register.js");
 const signin = require("./controllers/signin.js");
@@ -12,7 +11,6 @@ const profile = require("./controllers/profile.js");
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use(formData.parse());
 
 const db = knex({
   client: "pg",
@@ -36,7 +34,7 @@ app.get("*", (req, res) => {
   res.send("sorry, nothing here((");
 });
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log("server starts");
 });
