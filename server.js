@@ -7,6 +7,7 @@ const knex = require("knex");
 const register = require("./controllers/register.js");
 const signin = require("./controllers/signin.js");
 const profile = require("./controllers/profile.js");
+const image = require("./controllers/image.js");
 
 const app = express();
 app.use(bodyParser.json());
@@ -29,6 +30,9 @@ app.post("/signin", signin.handleSignIn(db, bcrypt));
 app.post("/register", register.handleRegister(db, bcrypt));
 
 app.get("/profile/:id", profile.handleProfile(db));
+
+app.put("/image", image.handleImage(db));
+app.post("/imageurl", image.handleApiCall());
 
 app.get("*", (req, res) => {
   res.send("sorry, nothing here((");
