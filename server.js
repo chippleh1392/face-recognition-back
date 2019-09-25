@@ -4,10 +4,6 @@ const bcrypt = require("bcrypt-nodejs");
 const cors = require("cors");
 const knex = require("knex");
 
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
-
 const db = knex({
   client: "pg",
   connection: {
@@ -15,8 +11,13 @@ const db = knex({
     ssl: true
   }
 });
+
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+
 app.get("/", (req, res) => {
-  res.send(database.users);
+  res.send(db.users);
 });
 
 app.post("/signin", (req, res) => {
